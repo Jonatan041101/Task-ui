@@ -8,7 +8,7 @@ import { IUpdateTaskDto } from './application/dto/update-task.dto.interface';
 import { ConfirmModalComponent } from './components/confirm-modal.component';
 import { NotificationService } from '../../shared/application/services/notification.service';
 import { Task } from './domain/task.domain';
-import { AuthService } from '../iam/services/auth.service';
+import { AuthService } from '../iam/auth/application/services/auth.service';
 
 @Component({
   selector: 'app-task',

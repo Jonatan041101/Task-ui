@@ -4,13 +4,12 @@ import {
   FormGroup,
   Validators,
   ReactiveFormsModule,
-  AbstractControl,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../services/auth.service';
 import { StandardInputComponent } from '../../../shared/components/standard-input/standard-input.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './application/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: string = '';
   loading: boolean = false;

@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserModel } from '../../../shared/models/user.model';
 import {
   applyActionCode,
   getAuth,
@@ -10,9 +9,10 @@ import {
   signInWithEmailLink,
   signOut,
 } from 'firebase/auth';
-import { environment } from '../../../../environments/environment';
 import Cookies from 'universal-cookie';
 import { Router } from '@angular/router';
+import { environment } from '../../../../../../environments/environment';
+import { UserModel } from '../../../../../shared/models/user.model';
 export const accessToken = new Cookies('accessToken', { path: '/' });
 @Injectable({
   providedIn: 'root',

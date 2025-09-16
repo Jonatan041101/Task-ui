@@ -1,10 +1,9 @@
-// src/app/guards/auth.guard.ts
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { from, Observable } from 'rxjs';
-import { map, first } from 'rxjs/operators';
-import { accessToken } from '../../services/auth.service';
+import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { accessToken } from '../services/auth.service';
 
 export const authGuard: CanActivateFn = (route, state): Observable<boolean> => {
   const router = inject(Router);
