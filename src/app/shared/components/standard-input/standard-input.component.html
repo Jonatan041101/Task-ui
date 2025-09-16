@@ -1,0 +1,19 @@
+<div class="form-group">
+  <label [for]="id || name">{{ label }}</label>
+  <input
+    [id]="id || name"
+    [type]="type"
+    [name]="name"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="isDisabled || disabled"
+    [class.error]="hasError()"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  @if (hasError()) {
+  <span class="error-message">
+    {{ getFieldError() }}
+  </span>
+  }
+</div>
