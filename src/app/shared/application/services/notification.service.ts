@@ -12,7 +12,7 @@ export class NotificationService {
 
     const toast = document.createElement('div');
     toast.textContent = message;
-    toast.className = 'app-notification-toast'; 
+    toast.className = 'app-notification-toast';
 
     toast.style.cssText = `
       position: fixed;
@@ -37,7 +37,7 @@ export class NotificationService {
 
     setTimeout(() => {
       toast.style.opacity = '0';
-      setTimeout(() => toast.remove(), 300); 
+      setTimeout(() => toast.remove(), 300);
     }, duration);
   }
 }

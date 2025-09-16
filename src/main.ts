@@ -5,5 +5,4 @@ import { FirebaseClient } from './app/config/firebase.config';
 
 FirebaseClient.getInstance().initialize();
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(App, appConfig).catch((err) => console.error(err));

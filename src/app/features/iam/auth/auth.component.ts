@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  AbstractControl,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
@@ -29,7 +35,11 @@ export class LoginComponent implements OnInit {
       email: 'Email inválido',
     },
   };
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
     });
@@ -40,13 +50,11 @@ export class LoginComponent implements OnInit {
       const idToken = await this.authService.handleSignInLink();
 
       if (idToken) {
-        
         this.router.navigate(['/task']);
       } else {
         this.router.navigate(['/']);
       }
     } catch (error) {
-      
       this.router.navigate(['/']);
     }
   }
@@ -55,14 +63,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loading = true;
       this.errorMessage = '';
-      
+
       const auth = await this.authService.login(this.loginForm.value);
       auth.subscribe({
         next: (response) => {
-          
           this.loading = false;
           if (response.success) {
-            
           } else {
             this.errorMessage = response.message;
           }

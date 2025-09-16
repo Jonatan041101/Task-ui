@@ -1,6 +1,6 @@
-import { FirebaseApp, getApps, initializeApp } from "firebase/app";
-import { getFirestore, Firestore } from "firebase/firestore";
-import { environment } from "../../environments/environment.development";
+import { FirebaseApp, getApps, initializeApp } from 'firebase/app';
+import { getFirestore, Firestore } from 'firebase/firestore';
+import { environment } from '../../environments/environment.development';
 
 export class FirebaseClient {
   private static instance: FirebaseClient;
@@ -39,9 +39,7 @@ export class FirebaseClient {
 
   public getApp(): FirebaseApp {
     if (!this.app) {
-      throw new Error(
-        "Firebase Client not initialized. Call initialize() first."
-      );
+      throw new Error('Firebase Client not initialized. Call initialize() first.');
     }
     return this.app;
   }

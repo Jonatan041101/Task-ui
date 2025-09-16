@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -37,12 +30,11 @@ export class ModalComponent implements OnChanges {
 
   constructor(private fb: FormBuilder) {
     this.taskForm = this.fb.nonNullable.group({
-        title: ['', [Validators.required, Validators.minLength(5)]],
-        description: ['', [Validators.required, Validators.minLength(10)]],
-      });
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+    });
   }
   ngOnChanges(changes: SimpleChanges): void {
-    
     if (changes['taskToEdit'] && this.taskToEdit) {
       this.taskForm.patchValue({
         title: this.taskToEdit.title,
@@ -60,7 +52,6 @@ export class ModalComponent implements OnChanges {
 
   onSubmit() {
     if (this.taskForm.valid && !this.isSubmitting) {
-        
       const formData = {
         ...this.taskForm.value,
         uuid: this.isEditMode && this.taskToEdit ? this.taskToEdit.uuid : undefined,

@@ -40,7 +40,11 @@ export class TaskComponent implements OnInit {
     },
   };
 
-  constructor(private taskService: TaskService, private notificationService: NotificationService,private authService:AuthService) {}
+  constructor(
+    private taskService: TaskService,
+    private notificationService: NotificationService,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit() {
     this.getAllTasks();
@@ -100,17 +104,17 @@ export class TaskComponent implements OnInit {
     const currentTask = this.tasks.find((task) => taskUuid === task.uuid);
     if (!currentTask)
       return this.notificationService.showNotification(
-        'No se encontro la tarea para actualizarla.'
+        'No se encontro la tarea para actualizarla.',
       );
     const isCompleted = !currentTask.isCompleted;
     this.taskService.updateTask({ isCompleted }, taskUuid).subscribe({
       next: () => {
         this.tasks = this.tasks.map((task) =>
-          task.uuid === taskUuid ? { ...task, isCompleted } : task
+          task.uuid === taskUuid ? { ...task, isCompleted } : task,
         );
         this.setFilter(this.currentFilter);
         this.notificationService.showNotification(
-          isCompleted ? 'Tarea completada exitosamente' : 'Tarea puesta en pendiente nuevamente'
+          isCompleted ? 'Tarea completada exitosamente' : 'Tarea puesta en pendiente nuevamente',
         );
       },
       error: (err) => {
@@ -132,7 +136,7 @@ export class TaskComponent implements OnInit {
           this.tasks = this.tasks.map((task) =>
             task.uuid === uuid
               ? { ...task, description: taskForm.description ?? '', title: taskForm.title ?? '' }
-              : task
+              : task,
           );
           this.setFilter(this.currentFilter);
           this.closeModal();
@@ -218,7 +222,7 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  logout(){
-    this.authService.logout()
+  logout() {
+    this.authService.logout();
   }
 }

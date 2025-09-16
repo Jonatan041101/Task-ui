@@ -1,4 +1,3 @@
-  export interface UserModel {
-    email: string;
-  }
-  
+export interface UserModel {
+  email: string;
+}

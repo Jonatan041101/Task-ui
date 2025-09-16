@@ -10,30 +10,28 @@ export const authGuard: CanActivateFn = (route, state): Observable<boolean> => {
   const router = inject(Router);
   const auth = getAuth();
 
-  return new Observable<boolean>(subscriber => {
-    onAuthStateChanged(auth, user => {
+  return new Observable<boolean>((subscriber) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
-        user.getIdToken().then((token)=>{
-
-            
-            accessToken.set("accessToken",token)
-        })
+        user.getIdToken().then((token) => {
+          accessToken.set('accessToken', token);
+        });
         subscriber.next(true);
-    } else {
+      } else {
         router.navigate(['/']);
         subscriber.next(false);
       }
       subscriber.complete();
     });
-  }).pipe(first()); 
+  }).pipe(first());
 };
 
 export const noAuthGuard: CanActivateFn = (route, state): Observable<boolean> => {
   const router = inject(Router);
   const auth = getAuth();
 
-  return new Observable<boolean>(subscriber => {
-    auth.onAuthStateChanged(user => {
+  return new Observable<boolean>((subscriber) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         router.navigate(['/task']);
         subscriber.next(false);
