@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start:prod": "ng serve --configuration=production",
+    "start:prod": "node set-env.js && ng serve --configuration=production",
     "start:dev": "ng serve --configuration=development",
     "format": "prettier \"src/**/*.{js,jsx,ts,tsx,json}\" \"./*.{js,cjs,ts,json}\" --write",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test:unit": "ng test"
+    "watch": "ng build --watch --configuration development"
   },
   "prettier": {
     "printWidth": 100,
@@ -30,6 +29,7 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "dotenv": "^17.2.2",
     "firebase": "^12.2.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
