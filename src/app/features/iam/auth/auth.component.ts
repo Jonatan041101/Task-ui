@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './application/services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-auth',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,8 +21,8 @@ import { AuthService } from './application/services/auth.service';
     ReactiveFormsModule,
     StandardInputComponent,
   ],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
   loginForm: FormGroup;
