@@ -1,0 +1,37 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <app-standard-input
+    formControlName="title"
+    type="title"
+    name="title"
+    label="Titulo"
+    placeholder="Aplicacion"
+    [errorMessages]="errorMessages['title']"
+    [control]="taskForm.get('title')"
+  >
+  </app-standard-input>
+  <div class="form-group">
+    <label class="form-label" for="taskDescription">Descripción</label>
+    <textarea
+      id="taskDescription"
+      class="form-textarea"
+      formControlName="description"
+      name="description"
+      rows="4"
+      maxlength="500"
+      [disabled]="isSubmitting"
+    >
+    </textarea>
+    @if (taskForm.get("description")?.touched && taskForm.get("description")?.invalid) {
+    <span class="error-message">
+      {{ getErrorMessage('description') }}
+    </span>
+    }
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn btn-cancel" (click)="onClose()">Cancelar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+      @if(isSubmitting){ Cargando... } @else{ 💾 {{ isEditMode ? 'Actualizar' : 'Guardar' }} Tarea }
+    </button>
+  </div>
+</form>

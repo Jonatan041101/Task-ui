@@ -1,0 +1,27 @@
+@if (isOpen) {
+  <div class="modal-overlay">
+    <div class="modal-dialog">
+      <p class="modal-message">{{ message }}</p>
+      <div class="modal-actions">
+        <button 
+        class="btn btn-cancel" 
+        (click)="onCancel()"
+        [disabled]="isSubmittingDelete"
+      >
+        Cancelar
+      </button>
+      <button 
+        class="btn btn-primary" 
+        (click)="onConfirm()" 
+        [disabled]="isSubmittingDelete"
+      >
+        @if(isSubmittingDelete){
+          Cargando...
+        }@else{
+          Aceptar
+        }
+      </button>
+      </div>
+    </div>
+  </div>
+}
