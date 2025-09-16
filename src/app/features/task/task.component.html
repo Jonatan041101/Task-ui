@@ -1,0 +1,128 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>📝 Gestor de Tareas</h1>
+    <p>Organiza tu día de manera eficiente</p>
+    <p>Bienvenido {{ username }}</p>
+  </header>
+
+  <div class="controls">
+    <button class="btn btn-primary" (click)="openCreateModal()">➕ Crear Nueva Tarea</button>
+
+    <div class="filter-buttons">
+      <button
+        class="btn btn-filter"
+        [class.active]="currentFilter === 'all'"
+        (click)="setFilter('all')"
+      >
+        Todas ({{ tasks.length }})
+      </button>
+      <button
+        class="btn btn-filter"
+        [class.active]="currentFilter === 'pending'"
+        (click)="setFilter('pending')"
+      >
+        Pendientes ({{ pendingTasksCount }})
+      </button>
+      <button
+        class="btn btn-filter"
+        [class.active]="currentFilter === 'completed'"
+        (click)="setFilter('completed')"
+      >
+        Completadas ({{ completeTasksCount }})
+      </button>
+      <button
+      class="btn btn-primary active"
+      (click)="logout()"
+    >
+      Cerrar Session    </button>
+    </div>
+  </div>
+
+  <div class="tasks-grid">
+    @for (task of filteredTasks; track trackByTaskId(task)) {
+    <div class="task-card" [class.completed]="task.isCompleted">
+      <div class="task-header">
+        <h3 class="task-title">{{ task.title }}</h3>
+      </div>
+
+      <p class="task-description" *ngIf="task.description">
+        {{ task.description }}
+      </p>
+
+      <div class="task-status">
+        <span
+          class="status-badge"
+          [class]="task.isCompleted ? 'status-completed' : 'status-pending'"
+        >
+          {{ task.isCompleted ? '✅ Completada' : '⏳ Pendiente' }}
+        </span>
+      </div>
+
+      <div class="task-actions">
+        <button class="btn btn-small btn-edit" (click)="openEditModal(task)">✏️ Editar</button>
+
+        <button
+          (click)="completeTask(task.uuid)"
+          class="btn btn-small"
+          [class]="task.isCompleted ? 'btn-incomplete' : 'btn-complete'"
+          [disabled]="isLoadingTasks[task.uuid]"
+        >
+          {{
+            isLoadingTasks[task.uuid]
+              ? 'Cargando...'
+              : task.isCompleted
+              ? '🔄 Reabrir'
+              : '✅ Completar'
+          }}
+        </button>
+        <button class="btn btn-small btn-delete" (click)="openModaldeleteTask(task?.uuid ?? '')">
+          🗑️ Eliminar
+        </button>
+      </div>
+    </div>
+    } @empty {
+      <div class="container-empty-state">
+        <div class="empty-state" *ngIf="filteredTasks.length === 0">
+          <h3>
+            ¡No tienes tareas
+            {{
+              currentFilter === 'all' ? '' : currentFilter === 'pending' ? 'pendientes' : 'completadas'
+            }}!
+      </h3>
+      @if(currentFilter === 'all'){
+        <p>Comienza creando tu primera tarea</p>
+      } @else{
+        <p>Cambia el filtro para ver otras tareas</p>
+      }
+    </div>
+  </div>
+    }
+  </div>
+
+  @if (isModalOpen) {
+  <div class="modal active" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">
+          {{ editingTask ? 'Editar Tarea' : 'Crear Nueva Tarea' }}
+        </h2>
+        <button class="close-btn" (click)="closeModal()">&times;</button>
+      </div>
+      <app-modal
+        [isSubmitting]="isSubmitting"
+        [taskToEdit]="editingTask"
+        [isEditMode]="!!editingTask"
+        (closeModalEvent)="closeModal()"
+        (taskSubmit)="onModalSubmit($event)"
+        [errorMessages]="errorMessages"
+      ></app-modal>
+    </div>
+  </div>
+  }
+
+  <app-confirm-modal
+    [isOpen]="isModalDeleteOpen"
+    (confirmed)="handleDeleteTask($event)"
+    [isSubmittingDelete]="isSubmittingDelete"
+  ></app-confirm-modal>
+</div>
