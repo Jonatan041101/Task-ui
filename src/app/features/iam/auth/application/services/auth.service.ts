@@ -1,22 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {
-  applyActionCode,
-  getAuth,
-  isSignInWithEmailLink,
-  onAuthStateChanged,
-  signInWithEmailLink,
-  signOut,
-} from 'firebase/auth';
+import { getAuth, isSignInWithEmailLink, signInWithEmailLink, signOut } from 'firebase/auth';
 import Cookies from 'universal-cookie';
 import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { UserModel } from '../../../../../shared/models/user.model';
+
 export const accessToken = new Cookies('accessToken', { path: '/' });
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private auth = getAuth();
   private router = inject(Router);
@@ -26,8 +21,6 @@ export class AuthService {
   async handleSignInLink() {
     if (isSignInWithEmailLink(this.auth, window.location.href)) {
       try {
-        const xd = applyActionCode(this.auth, window.location.href);
-        console.log(xd, 'xd');
         if (isSignInWithEmailLink(this.auth, window.location.href)) {
           const email = localStorage.getItem('emailForSignIn');
 
