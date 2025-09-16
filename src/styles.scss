@@ -1,0 +1,55 @@
+@import "./styles/variables.scss";
+@import "./styles/mixin.scss";
+@import "./styles/_buttons.scss";
+@import "./styles/_layout.scss";
+@import "./styles/_forms.scss";
+@import "./styles/_modal.scss";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
