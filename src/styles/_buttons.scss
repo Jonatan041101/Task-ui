@@ -1,0 +1,106 @@
+@import './variables.scss';
+@import './mixin.scss';
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  @include transition(all 0.3s ease);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background: $primary-color;
+  color: $text-black;
+  display: flex;
+  justify-content: center;
+  @include card-shadow();
+
+  &:hover:not(:disabled) {
+    background: darken($primary-color, 10%);
+    @include hover-shadow();
+    transform: translateY(-2px);
+  }
+}
+
+.btn-filter {
+  background: rgba(255, 255, 255, 0.2);
+  color: $text-black;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  padding: 8px 16px;
+
+  &.active {
+    background: $primary-color;
+    border-color: $primary-color;
+    color: $text-black;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+}
+
+.btn-edit {
+  background: $primary-color;
+  color: $text-black;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+}
+
+.btn-delete {
+  background: $error-red;
+  color: $white;
+
+  &:hover {
+    background: darken($error-red, 10%);
+  }
+}
+
+.btn-complete {
+  background: $success-green;
+  color: $white;
+
+  &:hover {
+    background: darken($success-green, 10%);
+  }
+}
+
+.btn-incomplete {
+  background: $secondary-gray;
+  color: $white;
+
+  &:hover {
+    background: darken($secondary-gray, 10%);
+  }
+}
+
+.btn-cancel {
+  background: lighten($secondary-gray, 20%);
+  color: $text-black;
+
+  &:hover {
+    background: lighten($secondary-gray, 10%);
+  }
+}
+
+
